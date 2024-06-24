@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name          = "Normal Attachment"
+  s.name          = "normal_attachment"
   s.version       = "0.0.1"
   s.authors       = ["Felipe Mesquita"]
   s.email         = "felipemesquita@hey.com"
