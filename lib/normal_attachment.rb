@@ -5,25 +5,22 @@ module NormalAttachment
     extend ActiveSupport::Concern
 
     included do
-      validates :attachment, presence: true
       has_one_attached :attachment
+      validates :attachment, presence: true
     end
 
-    # Para agradar o painel do admin:
+    # Solidus Admin/Backend requirements:
+    # - attachment name must be 'attachment'
+    # - a :url method defined on the model instances that takes options (size)
+    # - a class method :attachment_definitions that returns a hash in this format (apparently not used)
 
-    # 0. o nome do has_one_attched ser attachment
-
-    # 1. poder chamar url direto no modelo e nao no attachment
-    def url opcoes_do_spree
-        puts "spree chamou url com esses argumetnos:"
-        puts opcoes_do_spree.inspect
-        attachment.url
+    def url spree_options
+      attachment.url
     end
 
-    # 2. pegar uma lista de estilos na classe Spree::Image
     class_methods do
       def attachment_definitions
-        return {:attachment => {styles: { original: '48x48>'}, default_stle: "original"}}
+        {attachment: {styles: {original: "48x48>"}, default_stle: "original"}}
       end
     end
   end
