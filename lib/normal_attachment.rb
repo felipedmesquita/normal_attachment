@@ -14,7 +14,7 @@ module NormalAttachment
     # - a :url method defined on the model instances that takes options (size)
     # - a class method :attachment_definitions that returns a hash in this format (apparently not used)
 
-    def url spree_options
+    def url spree_options=nil
       attachment.url
     end
 
